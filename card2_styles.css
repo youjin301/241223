@@ -1,0 +1,245 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #a0dcf6;
+    overflow: hidden; /* 스크롤 숨김 */
+  }
+    /* -------- 로고 영역 -------- */
+    #header {
+        /* margin: 30px 0; */
+        padding: 28px 50px;
+        margin: 0;
+        width: 100vw; /* 화면 너비에 맞게 설정 */
+        box-sizing: border-box; /* 패딩 포함 크기 계산 */
+        height: auto;
+        display: flex;
+        justify-content: space-between; /* 로고와 링크를 양쪽에 배치 */
+        align-items: center; /* 세로 중앙 정렬 */
+        position: fixed;
+        z-index: 10;
+        /* background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)); 그라데이션 배경 */
+      }
+      
+      #logo {
+        font-size: 30px;
+        font-weight: 600;
+        margin-right: auto; /* 로고를 왼쪽으로 정렬 */
+        text-decoration: none;
+        color: white;
+      }
+    
+      #logo:hover {
+        color: rgb(0, 255, 0); /* 마우스를 올렸을 때 텍스트 색상을 변경 */
+      }
+      
+        /* 상단 오른쪽 링크 영역 */
+    .header-links {
+      display: flex;
+      align-items: center;
+      gap: 40px; /* Play와 X 아이콘 사이 간격 */
+      position: absolute;
+      top: 28px;
+      right: 50px;
+    }
+    
+    /* .play-link {
+      font-size: 18px;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    
+    } */
+    
+    .play-link:hover {
+      color: #00ff00; /* 마우스 호버 시 색상 변경 */
+    }
+    
+    /* .close-icon {
+      font-size: 24px;
+      color: #ffffff;
+      text-decoration: none;
+      transition: transform 0.3s ease, color 0.3s ease;
+    } */
+    
+    .close-icon:hover {
+      transform: rotate(90deg); /* X 아이콘 회전 효과 */
+      color: #ff0000; /* 마우스 호버 시 색상 변경 */
+    }
+    
+    /* Play 링크와 X 아이콘에 흰색 밑줄 */
+    .play-link,
+    .close-icon {
+      font-size: 17px;
+      color: #ffffff;
+      text-decoration: none; /* 기본 밑줄 제거 */
+      font-weight: bold;
+      position: relative; /* 가상 요소 위치를 위해 relative 설정 */
+      
+    }
+    
+    .play-link::after,
+    .close-icon::after {
+      content: '';
+      position: absolute;
+      bottom: -6px; /* 텍스트 바로 아래에 위치 */
+      left: 0;
+      width: 100%;
+      height: 2px; /* 밑줄 두께 */
+      background-color: #ffffff; /* 밑줄 색상 */
+      transform: scaleX(1); /* 밑줄 기본 상태 */
+      transform-origin: left; /* 왼쪽에서 시작 */
+      transition: transform 0.3s ease; /* 부드러운 효과 */
+    }
+    
+    /* 호버 시 밑줄 애니메이션 */
+    .play-link:hover::after,
+    .close-icon:hover::after {
+      transform: scaleX(0); /* 호버 시 밑줄이 사라지는 효과 */
+    }
+
+
+/* ------------ 카드 시작..!!!!! ------------- */
+/* -- 배경 카드 -- */
+.section {
+    height: 100vh; /* 화면 크기만큼 높이 설정 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* 이미지 스타일 */
+  /* 이미지 공통 스타일 */
+.background {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.6s ease; /* 부드러운 회전 애니메이션 */
+}
+
+.background-image {
+    position: relative;
+    z-index: 0;
+    width: 960px;
+    height: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+  }
+  
+
+.interactive-container {
+  position: absolute; /* 화면 중심 정렬을 위해 절대 위치 지정 */
+  top: 50%; /* 세로 중앙 정렬 */
+  left: 50%; /* 가로 중앙 정렬 */
+  transform: translate(-50%, -50%); /* 중앙으로 위치 조정 */
+  width: auto; 
+  height: auto; 
+  overflow: hidden; /* 내부 요소가 벗어나지 않도록 설정 */
+  /* background-color: #ffffff; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  */
+}
+
+
+/* -------- 개별 카드 --------- */
+/* 공통 스타일 */
+.card-container {
+    perspective: 1000px;
+    cursor: pointer;
+    position: absolute;
+  }
+  
+  .card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease-in-out;
+  }
+
+  @font-face {
+    font-family: 'IMHyemin';
+    src: url('./fonts/IM_Hyemin-Regular.woff2') format('woff2'),
+         url('./fonts/IM_Hyemin-Regular.woff') format('woff'),
+         url('./fonts/IM_Hyemin-Regular.otf') format('opentype');
+  }
+
+  .card-front,
+  .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'IMHyemin';
+    font-size: 18px;
+    line-height: 1.4;
+    font-weight: bold;
+    border: 1px solid #3E833E;
+    border-radius: 10px;
+    overflow: hidden; /* 카드 영역을 벗어나는 요소 숨김 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-front {
+    /* background-color: #4caf50; */
+    color: #3E833E;
+  }
+  
+  .card-back {
+    /* background-color: #f44336; */
+    /* color: white; */
+    transform: rotateY(180deg);
+  }
+
+  /* 카드 뒷면 이미지 */
+.card-back .image {
+    width: 100%; /* 카드 컨테이너 너비에 맞춤 */
+    height: 100%; /* 카드 컨테이너 높이에 맞춤 */
+    object-fit: cover; /* 비율을 유지하며 영역을 채움 */
+    object-position: center; /* 중앙 정렬 */
+  }
+  
+/* ----- 개별 카드 스타일 및 위치 ----- */
+  /* 카드 1 스타일 */
+  .card1 {
+    position: absolute; /* interactive-container 기준으로 위치 설정 */
+    width: 370px;
+    height: 390px;
+    bottom: 130px;
+    left: 55px;
+  }
+  
+  /* 카드 2 스타일 */
+  .card2 {
+    position: absolute; /* interactive-container 기준으로 위치 설정 */
+    width: 370px;
+    height: 220px;
+    top: 60px;
+    right: 55px;
+  }
+  
+  /* 카드 3 스타일 */
+  .card3 {
+    position: absolute; /* interactive-container 기준으로 위치 설정 */
+    width: 370px;
+    height: 290px;
+    bottom: 60px;
+    right: 100px;
+  }
+
+/* ---- 카드 회전 ---- */
+  /* 카드 클릭 시 뒤집기 */
+  .card.active {
+    transform: rotateY(-180deg);
+  }
+
+/* 마우스 호버 시 */
+.card-container:hover .card {
+    transform: rotateY(-180deg);
+    transition: transform 0.6s ease; /* 부드러운 회전 애니메이션 */
+}

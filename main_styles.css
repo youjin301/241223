@@ -1,0 +1,272 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: 1;
+  list-style-type: none;
+  color: inherit;
+  text-decoration: none;
+  word-break: keep-all;
+  font-family: 'Arial', sans-serif;
+  /* background-color: #f9f9f9; */
+}
+
+body {
+  background-color: #000; /* 배경 검정색 */
+  color: #fff; /* 글자 흰색 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#main {
+  width: 100%;
+  height: auto;
+}
+
+/* -------- 로고 영역 -------- */
+#header {
+  /* margin: 30px 0; */
+  padding: 28px 50px;
+  margin: 0;
+  width: 100vw;
+  height: auto;
+  display: flex;
+  position: fixed;
+  z-index: 10;
+}
+
+#logo {
+  font-size: 30px;
+  font-weight: 600;
+  margin-right: auto; /* 로고를 왼쪽으로 정렬 */
+}
+
+#logo:hover {
+  color: rgb(0, 255, 0); /* 마우스를 올렸을 때 텍스트 색상을 변경 */
+}
+
+/* -------- 컨텐츠 영역 -------- */
+#content {
+  padding: 0;
+  margin: 0;
+}
+
+/* --------- 메뉴 --------- */
+#menu-container {
+  position: fixed;
+  top: 50%; /* 화면의 세로 중앙 */
+  left: 0; /* 가로 위치는 왼쪽 시작 */
+  transform: translateY(-50%); /* 정확히 세로 중앙에 정렬 */
+  width: 100vw;
+  text-align: center;
+  z-index: 10;
+}
+
+#menu {
+  list-style: none;
+  padding: 0 50px; /* 메뉴 항목 양옆 간격을 위해 패딩 추가 */
+  margin: 0;
+  display: flex;
+  justify-content: space-between; /* 메뉴를 양쪽 끝으로 배치 */
+  align-items: center;
+}
+
+.menu-item {
+  position: relative;
+  font-size: 16px;
+  /* font-weight: bold; */
+  cursor: pointer;
+  transition: color 0.3s ease, opacity 0.3s ease; /* 애니메이션 추가 */
+  line-height: 1.4;
+}
+
+.menu-item:hover {
+  color: rgb(0, 222, 0); /* 호버된 메뉴 글자 색 변경 */
+  font-style: italic;
+}
+
+
+/* 호버 박스 효과 */
+.menu-item::before {
+  content: attr(data-text); /* 박스 안의 글자 */
+  position: fixed; /* 화면 중앙에 고정 */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1, 0); /* 초기 상태: 세로로 압축 */
+  width: 100vw; /* 화면 전체 너비 */
+  height: 120px; /* 세로 크기 */
+  background-color: #fff;
+  color: #aaa; /* 회색 글자 */
+  font-size: 50px;
+  font-weight: bold;
+  font-style: normal;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  overflow: hidden;
+  z-index: -1;
+  transition: transform 0.4s ease, opacity 0.3s ease;
+  opacity: 0; /* 초기 상태에서 보이지 않음 */
+}
+
+.menu-item:hover::before {
+  transform: translate(-50%, -50%) scale(1, 1); /* 세로로 확장 */
+  opacity: 1; /* 보이도록 설정 */
+}
+
+/* ----- contact ---- */
+.menu-item {
+  position: relative;
+  display: inline-block;
+}
+
+.mail-info {
+  display: none;
+  position: absolute;
+  bottom: -35px; /* 위치 조정 */
+  left: 0;
+  background-color: white;
+  color: black;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 15px;
+  z-index: 10;
+  white-space: nowrap;
+  transition: all 0.7s ease;
+}
+
+.menu-item:hover .mail-info {
+  display: block;
+  transform: translateX(-57%); /* 오른쪽에서 왼쪽으로 사각형 이동 */
+
+}
+
+
+/* -------- 메인 콘텐츠 (제목) 영역 -------- */
+#main-container {
+  position: relative; /* 요소를 기준으로 중앙 정렬 가능 */
+  height: 50vh; /* 화면 높이의 절반 */
+  display: flex; /* 내부 요소 정렬을 위한 플렉스박스 */
+  justify-content: center; /* 가로 중앙 정렬 */
+  align-items: center; /* 세로 중앙 정렬 */
+  top: 0;
+  text-align: center; /* 텍스트 가운데 정렬 */
+  overflow: hidden;
+}
+
+/* 컨테이너 중앙 정렬 */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.text-group {
+  display: flex;
+  gap: 0px; /* 글자 간격 */
+  justify-content: center;
+  align-items: center;
+  height: 100px; /* 중앙 정렬을 위한 높이 */
+  position: absolute;
+  top: 52%;
+  transform: translateY(-50%);
+}
+
+.hidden {
+  visibility: hidden; /* 초기 상태에서 보이지 않음 */
+}
+
+/* UNFOLD 글자 스타일 */
+#unfold .letter {
+  font-size: 21rem; /* 글자 크기를 키움 */
+  font-weight: bold;
+  opacity: 0; /* 초기 상태: 투명 */
+  transform: translateY(100%); /* 화면 하단에서 시작 */
+  animation: none; /* 기본적으로 애니메이션 없음 */
+}
+
+/* 기본 스타일 */
+.letter {
+  font-size: 5rem; /* 기본 글자 크기 */
+  font-weight: bold;
+  opacity: 0; /* 초기 상태: 투명 */
+  transform: translateY(100%); /* 화면 하단에서 시작 */
+  animation: none; /* 기본적으로 애니메이션 없음 */
+}
+
+/* 글자 위로 올라오는 애니메이션 */
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 글자 아래로 내려가는 애니메이션 */
+@keyframes slideDown {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+
+/* .main-title {
+  font-size: 100px;
+  font-weight: bold;
+  margin: 0;
+} */
+
+/* -------- 서브 콘텐츠 영역 -------- */
+#sub_container {
+  position: relative; /* 기준 위치를 설정 */
+  height: 50vh; /* 화면 높이의 절반 */
+  display: flex; /* 내부 요소 정렬을 위한 플렉스박스 */
+  justify-content: center; /* 가로 방향 중앙 정렬 */
+  align-items: center; /* 세로 방향 중앙 정렬 */
+  bottom: 0; /* 화면 하단에 배치 */
+  padding: 60px 50px;
+  gap: 270px;
+}
+
+.left-info, .right-info {
+  width: auto;
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: center;
+}
+  
+.italic {
+  font-style: italic;
+  color: rgb(255, 255, 255);
+}
+
+.line {
+  position: relative; /* 위치 조정을 위해 상대 위치 지정 */
+  display: inline-block; /* 글자 크기와 밑줄 크기를 일치시키기 위해 */
+}
+
+.line::after {
+  content: ''; /* 가상 요소를 생성 */
+  position: absolute;
+  left: 0;
+  bottom: -2px; /* 밑줄의 위치를 글자 아래로 이동 */
+  width: 100%; /* 글자 너비에 맞춤 */
+  height: 1px; /* 밑줄 두께 */
+  background-color: currentColor; /* 텍스트 색상과 동일한 색상 사용 */
+}

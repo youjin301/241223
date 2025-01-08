@@ -1,0 +1,239 @@
+/* 기본 스타일 초기화 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: 1;
+  list-style-type: none;
+  color: inherit;
+  text-decoration: none;
+  word-break: keep-all;
+  font-family: 'Arial', sans-serif;
+  }
+  
+  body {
+    background-color: #000; /* 배경 검정색 */
+    color: #fff;
+    overflow-x: hidden;
+  }
+
+  #main {
+    width: 100%;
+    height: auto;
+  }
+  
+  /* -------- 로고 영역 -------- */
+  #header {
+    /* margin: 30px 0; */
+    padding: 28px 50px;
+    margin: 0;
+    width: 100vw;
+    height: auto;
+    display: flex;
+    position: fixed;
+    z-index: 10;
+    background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)); /* 그라데이션 배경 */
+  }
+  
+  #logo {
+    font-size: 30px;
+    font-weight: 600;
+    margin-right: auto; /* 로고를 왼쪽으로 정렬 */
+  }
+
+  #logo:hover {
+    color: rgb(0, 255, 0); /* 마우스를 올렸을 때 텍스트 색상을 변경 */
+  }
+  
+       /* 상단 오른쪽 링크 영역 */
+       .header-links {
+        display: flex;
+        align-items: center;
+        gap: 40px; /* Play와 X 아이콘 사이 간격 */
+        position: absolute;
+        top: 28px;
+        right: 50px;
+      }
+      
+      /* .play-link {
+        font-size: 18px;
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s ease;
+      
+      } */
+      
+      .play-link:hover {
+        color: #00ff00; /* 마우스 호버 시 색상 변경 */
+      }
+      
+      /* .close-icon {
+        font-size: 24px;
+        color: #ffffff;
+        text-decoration: none;
+        transition: transform 0.3s ease, color 0.3s ease;
+      } */
+      
+      .close-icon:hover {
+        transform: rotate(90deg); /* X 아이콘 회전 효과 */
+        color: #ff0000; /* 마우스 호버 시 색상 변경 */
+      }
+      
+      /* Play 링크와 X 아이콘에 흰색 밑줄 */
+      .play-link,
+      .close-icon {
+        font-size: 17px;
+        color: #ffffff;
+        text-decoration: none; /* 기본 밑줄 제거 */
+        font-weight: bold;
+        position: relative; /* 가상 요소 위치를 위해 relative 설정 */
+      }
+      
+      .play-link::after,
+      .close-icon::after {
+        content: '';
+        position: absolute;
+        bottom: -6px; /* 텍스트 바로 아래에 위치 */
+        left: 0;
+        width: 100%;
+        height: 2px; /* 밑줄 두께 */
+        background-color: #ffffff; /* 밑줄 색상 */
+        transform: scaleX(1); /* 밑줄 기본 상태 */
+        transform-origin: left; /* 왼쪽에서 시작 */
+        transition: transform 0.3s ease; /* 부드러운 효과 */
+      }
+      
+      /* 호버 시 밑줄 애니메이션 */
+      .play-link:hover::after,
+      .close-icon:hover::after {
+        transform: scaleX(0); /* 호버 시 밑줄이 사라지는 효과 */
+      }
+  /* -------- 컨텐츠 영역 -------- */
+  #content {
+    padding: 0;
+    margin: 0;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding-top: 86px;
+    padding-bottom: 50px;
+  }
+
+/* ------ 글자 영역 설정 ------ */
+.text-container {
+  width: 100%;
+  /* margin-top: 86px; */
+  padding: 0 220px;
+  /* padding-top: 70px; */
+}
+
+.text-title {
+  float: left;
+  display: block;
+  width: 33%;
+  font-size: 28px;
+  font-weight: 500 ;
+  letter-spacing: -1.2px;
+  line-height: 1.2;
+  margin-bottom: 0;
+  /* padding-left: 30px; */
+}
+
+.text-detail {
+  float: left;
+  display: block;
+  width: 67%;
+  font-size: 19px;
+  letter-spacing: -1.0px;
+  line-height: 1.6;
+  /* padding-right: 30px; */
+}
+  
+/* ------ 이미지 영역 설정 ------ */
+.image-container {
+  position: relative;
+  width: 0; /* 초기 가로 길이 0 */
+  height: auto; /* 높이는 초기 설정 없음 */
+  overflow: hidden; /* 넘치는 이미지 숨기기 */
+  background-color: #8c8c8c; /* 컨테이너 배경색 */
+  transition: width 1s ease, opacity 1s ease; /* 애니메이션 효과 */
+  opacity: 0; /* 처음에는 보이지 않음 */
+  box-sizing: border-box; /* 패딩 포함 크기 계산 */
+  /* java script에서 수정. 양옆에 margin ...px 간격 추가 */
+}
+
+.image-container.visible {
+  opacity: 1; /* 보이도록 설정 */
+  /* 너비와 높이는 JavaScript에서 설정 */
+}
+
+.scroll-image {
+  position: absolute; /* 컨테이너 내부에서 이미지 정렬 */
+  top: 0;
+  left: 0;
+  width: 100%; 
+  height: auto; /* 컨테이너 세로 크기에 맞게 조정 */
+  object-fit: cover; /* 비율 유지하며 컨테이너를 채움 */
+  box-sizing: border-box;
+}
+
+.caption {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ccc;
+}
+
+/* -------- 동영상 삽입 영역 ------------ */
+.youtube-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  padding: 0 220px;
+  background-color: #000;
+}
+
+
+.youtube-container {
+  position: relative;
+  width: calc((100vw - (220px * 2)));
+  height: 0;
+  padding-top: calc(((100vw - (220px * 2))) * (9 / 16));
+  background-color: red;
+}
+
+.youtube-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+/* .image-container.visible {
+  position: relative;
+  width: calc((100vw - (220px * 2))) !important;
+  height: 0 !important;
+  padding-top: calc(((100vw - (220px * 2))) * (9 / 16));
+  background-color: white;
+}
+
+.image-container.visible img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+} */

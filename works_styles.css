@@ -1,0 +1,234 @@
+/* 전역 스타일 */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    height: 100%;
+    
+  }
+
+  /* -------- 로고 영역 -------- */
+  #header {
+    /* margin: 30px 0; */
+    padding: 28px 50px;
+    margin: 0;
+    width: 100vw; /* 화면 너비에 맞게 설정 */
+    box-sizing: border-box; /* 패딩 포함 크기 계산 */
+    height: auto;
+    display: flex;
+    justify-content: space-between; /* 로고와 링크를 양쪽에 배치 */
+    align-items: center; /* 세로 중앙 정렬 */
+    position: fixed;
+    z-index: 10;
+    /* background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)); 그라데이션 배경 */
+  }
+
+#logo {
+  font-size: 30px;
+  font-weight: 600;
+  margin-right: auto; /* 로고를 왼쪽으로 정렬 */
+  color: #ffffff; /* 글자 흰색 */
+  text-decoration: none;
+}
+
+#logo:hover {
+  color: rgb(0, 255, 0); /* 마우스를 올렸을 때 텍스트 색상을 변경 */
+}
+
+        /* 상단 오른쪽 링크 영역 */
+        .header-links {
+          display: flex;
+          align-items: center;
+          gap: 40px; /* Play와 X 아이콘 사이 간격 */
+          position: absolute;
+          top: 28px;
+          right: 49px;
+        }
+        
+        .play-link {
+          font-size: 18px;
+          color: #ffffff !important;
+          text-decoration: none;
+          font-weight: bold;
+          transition: color 0.3s ease;
+        
+        }
+        
+        .play-link:hover {
+          color: #00ff00; /* 마우스 호버 시 색상 변경 */
+        }
+        
+        /* .close-icon {
+          font-size: 24px;
+          color: #ffffff;
+          text-decoration: none;
+          transition: transform 0.3s ease, color 0.3s ease;
+        } */
+        
+        .close-icon:hover {
+          transform: rotate(90deg); /* X 아이콘 회전 효과 */
+          color: #ff0000; /* 마우스 호버 시 색상 변경 */
+        }
+        
+        /* Play 링크와 X 아이콘에 흰색 밑줄 */
+        .play-link,
+        .close-icon {
+          font-size: 17px;
+          color: #ffffff;
+          text-decoration: none; /* 기본 밑줄 제거 */
+          font-weight: bold;
+          position: relative; /* 가상 요소 위치를 위해 relative 설정 */
+          
+        }
+        
+        .play-link::after,
+        .close-icon::after {
+          content: '';
+          position: absolute;
+          bottom: -6px; /* 텍스트 바로 아래에 위치 */
+          left: 0;
+          width: 100%;
+          height: 2px; /* 밑줄 두께 */
+          background-color: #ffffff; /* 밑줄 색상 */
+          transform: scaleX(1); /* 밑줄 기본 상태 */
+          transform-origin: left; /* 왼쪽에서 시작 */
+          transition: transform 0.3s ease; /* 부드러운 효과 */
+        }
+        
+        /* 호버 시 밑줄 애니메이션 */
+        .play-link:hover::after,
+        .close-icon:hover::after {
+          transform: scaleX(0); /* 호버 시 밑줄이 사라지는 효과 */
+        }
+    
+
+/* -------- 컨텐츠 영역 -------- */
+  .container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .section {
+    flex: 1; /* 섹션의 기본 크기 (조절 가능) */
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: flex 0.5s ease-in-out;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    color: #000000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+
+  }
+  
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .section .keyword {
+    writing-mode: vertical-rl; /* 세로 방향 텍스트 */
+    text-orientation: sideways; /* 글자를 직립 상태로 표시 */
+    transform: rotate(180deg); /* 텍스트가 반대 방향일 경우 회전 */
+    font-size: 20px;
+    position: absolute;
+    left: 2px;
+    bottom: 15px; 
+    /* transform: translateY(-50%) rotate(180deg); 중앙 정렬 및 방향 수정 */
+    color: #000;
+    white-space: nowrap; /* 텍스트가 끊기지 않도록 설정 */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .section.active .keyword {
+    align-items: flex-start;
+    left: 15px;
+    bottom: 15px;
+    opacity: 0;
+    animation-name: fadeIn;
+    animation-duration: 0.2s;
+    animation-delay: 0.1s;
+    animation-fill-mode: forwards;
+  }
+
+  .section .content {
+    text-align: center;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  }
+  
+  .section.active .content {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .main-title {
+    font-size: 21rem;
+    font-weight: bold;
+  }
+
+  .main-text {
+    font-size: 2rem;
+  }
+
+
+/* 이미지 컨테이너 스타일 */
+.image-container {
+  width: 1100px; /* 컨테이너 너비를 고정 */
+  height: 700px; /* 높이를 원하는 값으로 고정 */
+  margin: 40px auto; /* 상하 여백, 가운데 정렬 */
+  overflow: hidden; /* 넘치는 부분 숨김 */
+  /* border-radius: 10px;  */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+  background-color: #f4f4f4; /* 배경 색상 */
+  position: relative;
+}
+
+/* 이미지 스타일 */
+.section-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 비율을 유지하면서 컨테이너에 꽉 차게 */
+  object-position: center center; /* 이미지의 중앙 기준 */
+}
+  
+
+  
+  
+  #section1 { background-color: #000000; color: #ffffff; }
+  #section2 { background-color: #9fcfa4; }
+  #section3{ background-color: #a0dcf6; }
+  #section4 { background-color: #f3d4d4; }
+
+
+   div.section a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+   }
+
+   div.section.active a {
+    pointer-events: all;
+   }

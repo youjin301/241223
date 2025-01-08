@@ -1,0 +1,174 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* 기본 스크롤 숨김 */
+    font-family: Arial, sans-serif;
+    background-color: #e8bbbb;
+  }
+
+    /* -------- 로고 영역 -------- */
+    #header {
+        /* margin: 30px 0; */
+        padding: 28px 50px;
+        margin: 0;
+        width: 100vw;
+        box-sizing: border-box; /* 패딩 포함 크기 계산 */
+        height: auto;
+        display: flex;
+        position: fixed;
+        z-index: 10;
+        /* background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)); 그라데이션 배경 */
+      }
+      
+      #logo {
+        font-size: 30px;
+        font-weight: 600;
+        margin-right: auto; /* 로고를 왼쪽으로 정렬 */
+        text-decoration: none;
+        color: rgb(255, 255, 255);
+      }
+    
+      #logo:hover {
+        color: rgb(0, 255, 0); /* 마우스를 올렸을 때 텍스트 색상을 변경 */
+      }
+      
+        /* 상단 오른쪽 링크 영역 */
+    .header-links {
+      display: flex;
+      align-items: center;
+      gap: 40px; /* Play와 X 아이콘 사이 간격 */
+      position: absolute;
+      top: 28px;
+      right: 50px;
+    }
+    
+    /* .play-link {
+      font-size: 18px;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    
+    } */
+    
+    .play-link:hover {
+      color: #00ff00; /* 마우스 호버 시 색상 변경 */
+    }
+    
+    /* .close-icon {
+      font-size: 24px;
+      color: #ffffff;
+      text-decoration: none;
+      transition: transform 0.3s ease, color 0.3s ease;
+    } */
+    
+    .close-icon:hover {
+      transform: rotate(90deg); /* X 아이콘 회전 효과 */
+      color: #ff0000; /* 마우스 호버 시 색상 변경 */
+    }
+    
+    /* Play 링크와 X 아이콘에 흰색 밑줄 */
+    .play-link,
+    .close-icon {
+      font-size: 17px;
+      color: #ffffff;
+      text-decoration: none; /* 기본 밑줄 제거 */
+      font-weight: bold;
+      position: relative; /* 가상 요소 위치를 위해 relative 설정 */
+    }
+    
+    .play-link::after,
+    .close-icon::after {
+      content: '';
+      position: absolute;
+      bottom: -6px; /* 텍스트 바로 아래에 위치 */
+      left: 0;
+      width: 100%;
+      height: 2px; /* 밑줄 두께 */
+      background-color: #ffffff; /* 밑줄 색상 */
+      transform: scaleX(1); /* 밑줄 기본 상태 */
+      transform-origin: left; /* 왼쪽에서 시작 */
+      transition: transform 0.3s ease; /* 부드러운 효과 */
+    }
+    
+    /* 호버 시 밑줄 애니메이션 */
+    .play-link:hover::after,
+    .close-icon:hover::after {
+      transform: scaleX(0); /* 호버 시 밑줄이 사라지는 효과 */
+    }
+
+/* ------ 컨텐츠 영역 ------ */
+  
+  .section {
+    height: 100vh; /* 화면 크기만큼 높이 설정 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.8s ease-in-out; /* 부드러운 이동 */
+  }
+
+  .interactive-container {
+    position: relative;
+    width: auto;
+  }
+  
+
+  .card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease-in-out;
+  }
+  
+
+  /* 이미지 스타일 */
+  /* 이미지 공통 스타일 */
+.image {
+  height: 100%;
+  width: auto;
+  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.6s ease; /* 부드러운 회전 애니메이션 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+}
+
+.image3 {
+  position: relative;
+  z-index: 1;
+  width: 50vw;
+}
+/* 회전축 설정 */
+.image1 {
+  position: absolute;
+  transform-origin: left center; /* 왼쪽 세로축을 기준으로 */
+  left: 0;
+  z-index: 2;
+}
+
+.image2 {
+  position: absolute;
+  transform-origin: right center; /* 오른쪽 세로축을 기준으로 */
+  right: 0;
+  z-index: 2;
+}
+
+/* 클릭 시 회전 (active 상태) */
+.image1.active {
+  transform: rotateY(180deg); /* 왼쪽 축 기준 회전 */
+  content: url('img/card3_img-l.jpg'); /* 대체할 이미지 경로 */
+}
+
+.image2.active {
+  transform: rotateY(180deg); /* 오른쪽 축 기준 회전 */
+  content: url('img/card3_img-r.jpg'); /* 대체할 이미지 경로 */
+
+}
+
+.image3.active {
+  width: 49vw;
+  height: auto;
+  /* transition: transform 0.6s ease; */
+}
